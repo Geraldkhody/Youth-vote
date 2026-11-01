@@ -101,6 +101,35 @@ export function getCategories(): Promise<Category[]> {
   return request('/api/categories')
 }
 
+// --- Admin: categories ---
+
+export function getAllCategories(): Promise<Category[]> {
+  return request('/api/admin/categories')
+}
+
+export interface CategoryInput {
+  name: string
+  code_letter: string
+  description?: string
+}
+
+export function createCategory(input: CategoryInput): Promise<Category> {
+  return request('/api/categories', {
+    method: 'POST',
+    body: JSON.stringify(input),
+  })
+}
+
+export function updateCategory(
+  id: number,
+  input: Partial<{ name: string; code_letter: string; description: string; is_active: boolean }>,
+): Promise<Category> {
+  return request(`/api/categories/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(input),
+  })
+}
+
 export function createNomination(input: NominationInput): Promise<Nomination> {
   return request('/api/nominations', {
     method: 'POST',

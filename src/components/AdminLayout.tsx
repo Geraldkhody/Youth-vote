@@ -18,6 +18,7 @@ export function AdminLayout({ children }: { children: ReactNode }) {
         <span className="admin-sidebar__admin">{admin?.name}</span>
         <NavLink to="/admin/nominations">Nominations</NavLink>
         <NavLink to="/admin/nominees">Nominees</NavLink>
+        <NavLink to="/admin/categories">Categories</NavLink>
         <NavLink to="/admin/audit-log">Audit log</NavLink>
         <button type="button" onClick={handleLogout} className="btn btn-sm btn-secondary admin-sidebar__logout">
           Logout

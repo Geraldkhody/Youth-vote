@@ -6,6 +6,7 @@ import { NominatePage } from './pages/NominatePage'
 import { LoginPage } from './pages/admin/LoginPage'
 import { NominationsPage } from './pages/admin/NominationsPage'
 import { NomineesPage } from './pages/admin/NomineesPage'
+import { CategoriesPage } from './pages/admin/CategoriesPage'
 import { AuditLogPage } from './pages/admin/AuditLogPage'
 
 function NotFound() {
@@ -34,6 +35,16 @@ export function App() {
             <RequireAdmin>
               <AdminLayout>
                 <NomineesPage />
+              </AdminLayout>
+            </RequireAdmin>
+          }
+        />
+        <Route
+          path="/admin/categories"
+          element={
+            <RequireAdmin>
+              <AdminLayout>
+                <CategoriesPage />
               </AdminLayout>
             </RequireAdmin>
           }

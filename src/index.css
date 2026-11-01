@@ -73,6 +73,23 @@ small {
   color: var(--color-text-muted);
 }
 
+.page-header--with-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.add-category-form {
+  margin-bottom: 1.5rem;
+  max-width: 480px;
+}
+
+.add-category-form h2 {
+  font-size: 1.1rem;
+}
+
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
