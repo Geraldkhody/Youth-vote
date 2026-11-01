@@ -45,7 +45,10 @@ export function NominationsPage() {
 
   return (
     <div className="nominations-page">
-      <h1>Nominations</h1>
+      <div className="page-header">
+        <h1>Nominations</h1>
+        <p>Review, approve, reject, or merge submitted nominations.</p>
+      </div>
 
       <div className="filters">
         <label>
@@ -181,18 +184,27 @@ function NominationRow({ nomination, onChanged }: { nomination: Nomination; onCh
       </td>
       <td>{new Date(nomination.created_at).toLocaleDateString()}</td>
       <td>
-        {nomination.nominee_id && <div>Nominee ID: {nomination.nominee_id}</div>}
-        {nomination.rejection_reason && <div>Reason: {nomination.rejection_reason}</div>}
+        {nomination.nominee_id && <div className="nominee-id-tag">Nominee ID: {nomination.nominee_id}</div>}
+        {nomination.rejection_reason && (
+          <div className="rejection-reason">Reason: {nomination.rejection_reason}</div>
+        )}
       </td>
       <td>
         {nomination.status === 'pending' && (
           <div className="row-actions">
-            <button type="button" onClick={handleApprove} disabled={busy}>
-              Approve
-            </button>
-            <button type="button" onClick={() => setShowReject((v) => !v)} disabled={busy}>
-              Reject
-            </button>
+            <div className="btn-group">
+              <button type="button" className="btn btn-sm btn-primary" onClick={handleApprove} disabled={busy}>
+                Approve
+              </button>
+              <button
+                type="button"
+                className="btn btn-sm btn-danger"
+                onClick={() => setShowReject((v) => !v)}
+                disabled={busy}
+              >
+                Reject
+              </button>
+            </div>
             {showReject && (
               <div className="reject-form">
                 <input
@@ -201,14 +213,19 @@ function NominationRow({ nomination, onChanged }: { nomination: Nomination; onCh
                   value={rejectReason}
                   onChange={(e) => setRejectReason(e.target.value)}
                 />
-                <button type="button" onClick={handleReject} disabled={busy || !rejectReason.trim()}>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-danger-solid"
+                  onClick={handleReject}
+                  disabled={busy || !rejectReason.trim()}
+                >
                   Confirm reject
                 </button>
               </div>
             )}
 
             {nominees === null ? (
-              <button type="button" onClick={loadNomineesForMerge} disabled={busy}>
+              <button type="button" className="btn btn-sm btn-secondary" onClick={loadNomineesForMerge} disabled={busy}>
                 Merge…
               </button>
             ) : (
@@ -221,7 +238,12 @@ function NominationRow({ nomination, onChanged }: { nomination: Nomination; onCh
                     </option>
                   ))}
                 </select>
-                <button type="button" onClick={handleMerge} disabled={busy || !selectedNomineeId}>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary"
+                  onClick={handleMerge}
+                  disabled={busy || !selectedNomineeId}
+                >
                   Confirm merge
                 </button>
               </div>

@@ -14,11 +14,12 @@ export function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="admin-layout">
       <nav className="admin-sidebar">
-        <p className="admin-sidebar__admin">{admin?.name}</p>
+        <span className="admin-sidebar__brand">Youth Awards</span>
+        <span className="admin-sidebar__admin">{admin?.name}</span>
         <NavLink to="/admin/nominations">Nominations</NavLink>
         <NavLink to="/admin/nominees">Nominees</NavLink>
         <NavLink to="/admin/audit-log">Audit log</NavLink>
-        <button type="button" onClick={handleLogout} className="admin-sidebar__logout">
+        <button type="button" onClick={handleLogout} className="btn btn-sm btn-secondary admin-sidebar__logout">
           Logout
         </button>
       </nav>

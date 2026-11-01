@@ -54,75 +54,93 @@ export function NominatePage() {
   }
 
   return (
-    <div className="nominate-page">
-      <h1>Nominate someone</h1>
+    <div className="centered-page">
+      <div className="brand">
+        <h1>Youth Awards</h1>
+        <p>Nominate someone who deserves recognition</p>
+      </div>
 
-      {success && (
-        <p className="success-message">Thank you. Your nomination has been received and is pending review.</p>
-      )}
-      {serverError && <p className="error-message">{serverError}</p>}
+      <div className="card">
+        <h1>Nominate someone</h1>
+        <p>Fill in the details below. We&apos;ll review every nomination before it&apos;s published.</p>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="category_id">Category</label>
-        <select
-          id="category_id"
-          value={values.category_id}
-          disabled={categoriesLoading}
-          onChange={(e) => updateField('category_id', e.target.value)}
-        >
-          <option value="" disabled>
-            Choose a category
-          </option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-        {errors.category_id && <p className="field-error">{errors.category_id}</p>}
+        {success && (
+          <p className="success-message">Thank you. Your nomination has been received and is pending review.</p>
+        )}
+        {serverError && <p className="error-message">{serverError}</p>}
 
-        <label htmlFor="nominee_name">Nominee name</label>
-        <input
-          id="nominee_name"
-          type="text"
-          value={values.nominee_name}
-          onChange={(e) => updateField('nominee_name', e.target.value)}
-        />
-        {errors.nominee_name && <p className="field-error">{errors.nominee_name}</p>}
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="field">
+            <label htmlFor="category_id">Category</label>
+            <select
+              id="category_id"
+              value={values.category_id}
+              disabled={categoriesLoading}
+              onChange={(e) => updateField('category_id', e.target.value)}
+            >
+              <option value="" disabled>
+                Choose a category
+              </option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            {errors.category_id && <p className="field-error">{errors.category_id}</p>}
+          </div>
 
-        <label htmlFor="nominee_phone">Nominee phone number</label>
-        <input
-          id="nominee_phone"
-          type="tel"
-          placeholder="0244123456"
-          value={values.nominee_phone}
-          onChange={(e) => updateField('nominee_phone', e.target.value)}
-        />
-        {errors.nominee_phone && <p className="field-error">{errors.nominee_phone}</p>}
+          <div className="field">
+            <label htmlFor="nominee_name">Nominee name</label>
+            <input
+              id="nominee_name"
+              type="text"
+              value={values.nominee_name}
+              onChange={(e) => updateField('nominee_name', e.target.value)}
+            />
+            {errors.nominee_name && <p className="field-error">{errors.nominee_name}</p>}
+          </div>
 
-        <label htmlFor="nominator_name">Your name</label>
-        <input
-          id="nominator_name"
-          type="text"
-          value={values.nominator_name}
-          onChange={(e) => updateField('nominator_name', e.target.value)}
-        />
-        {errors.nominator_name && <p className="field-error">{errors.nominator_name}</p>}
+          <div className="field">
+            <label htmlFor="nominee_phone">Nominee phone number</label>
+            <input
+              id="nominee_phone"
+              type="tel"
+              placeholder="0244123456"
+              value={values.nominee_phone}
+              onChange={(e) => updateField('nominee_phone', e.target.value)}
+            />
+            {errors.nominee_phone && <p className="field-error">{errors.nominee_phone}</p>}
+          </div>
 
-        <label htmlFor="nominator_phone">Your phone number</label>
-        <input
-          id="nominator_phone"
-          type="tel"
-          placeholder="0244123456"
-          value={values.nominator_phone}
-          onChange={(e) => updateField('nominator_phone', e.target.value)}
-        />
-        {errors.nominator_phone && <p className="field-error">{errors.nominator_phone}</p>}
+          <div className="field">
+            <label htmlFor="nominator_name">Your name</label>
+            <input
+              id="nominator_name"
+              type="text"
+              value={values.nominator_name}
+              onChange={(e) => updateField('nominator_name', e.target.value)}
+            />
+            {errors.nominator_name && <p className="field-error">{errors.nominator_name}</p>}
+          </div>
 
-        <button type="submit" disabled={submitting}>
-          {submitting ? 'Submitting…' : 'Submit nomination'}
-        </button>
-      </form>
+          <div className="field">
+            <label htmlFor="nominator_phone">Your phone number</label>
+            <input
+              id="nominator_phone"
+              type="tel"
+              placeholder="0244123456"
+              value={values.nominator_phone}
+              onChange={(e) => updateField('nominator_phone', e.target.value)}
+            />
+            {errors.nominator_phone && <p className="field-error">{errors.nominator_phone}</p>}
+          </div>
+
+          <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
+            {submitting ? 'Submitting…' : 'Submit nomination'}
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

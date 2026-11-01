@@ -18,17 +18,22 @@ export function AuditLogPage() {
 
   return (
     <div className="audit-log-page">
-      <h1>Audit log</h1>
+      <div className="page-header">
+        <h1>Audit log</h1>
+        <p>Every admin action, newest first.</p>
+      </div>
 
-      <label>
-        Filter by action
-        <input
-          type="text"
-          placeholder="e.g. nomination.approve"
-          value={actionFilter}
-          onChange={(e) => setActionFilter(e.target.value)}
-        />
-      </label>
+      <div className="filters">
+        <label>
+          Filter by action
+          <input
+            type="text"
+            placeholder="e.g. nomination.approve"
+            value={actionFilter}
+            onChange={(e) => setActionFilter(e.target.value)}
+          />
+        </label>
+      </div>
 
       {error && <p className="error-message">{error}</p>}
 

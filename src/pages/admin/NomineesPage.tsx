@@ -25,20 +25,24 @@ export function NomineesPage() {
 
   return (
     <div className="nominees-page">
-      <h1>Nominees</h1>
-      <p className="page-note">This list shows active nominees only.</p>
+      <div className="page-header">
+        <h1>Nominees</h1>
+        <p>This list shows active nominees only.</p>
+      </div>
 
-      <label>
-        Category
-        <select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); setSelectedId(null) }}>
-          <option value="">Choose a category</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="filters">
+        <label>
+          Category
+          <select value={categoryId} onChange={(e) => { setCategoryId(e.target.value); setSelectedId(null) }}>
+            <option value="">Choose a category</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
 
       {listError && <p className="error-message">{listError}</p>}
       {loading && <p className="page-message">Loading…</p>}
@@ -52,7 +56,7 @@ export function NomineesPage() {
               </button>
             </li>
           ))}
-          {nominees.length === 0 && <li>No active nominees in this category.</li>}
+          {nominees.length === 0 && <li className="nominee-list__empty">No active nominees in this category.</li>}
         </ul>
       )}
 
@@ -124,21 +128,21 @@ function NomineeDetail({ nomineeId, onChanged }: { nomineeId: number; onChanged:
   }
 
   return (
-    <div className="nominee-detail">
+    <div className="nominee-detail card">
       <h2>
         {nominee.code} — {nominee.full_name}
       </h2>
       {error && <p className="error-message">{error}</p>}
 
-      <label>
-        Full name
+      <div className="field">
+        <label>Full name</label>
         <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} />
-      </label>
-      <label>
-        Phone
+      </div>
+      <div className="field">
+        <label>Phone</label>
         <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
-      </label>
-      <button type="button" onClick={handleSave} disabled={saving}>
+      </div>
+      <button type="button" className="btn btn-primary" onClick={handleSave} disabled={saving}>
         Save changes
       </button>
 
@@ -146,7 +150,7 @@ function NomineeDetail({ nomineeId, onChanged }: { nomineeId: number; onChanged:
 
       {nominee.is_active && (
         <div className="deactivate-section">
-          <button type="button" onClick={() => setShowDeactivate((v) => !v)} disabled={saving}>
+          <button type="button" className="btn btn-danger" onClick={() => setShowDeactivate((v) => !v)} disabled={saving}>
             Deactivate
           </button>
           {showDeactivate && (
@@ -157,7 +161,12 @@ function NomineeDetail({ nomineeId, onChanged }: { nomineeId: number; onChanged:
                 value={deactivateReason}
                 onChange={(e) => setDeactivateReason(e.target.value)}
               />
-              <button type="button" onClick={handleDeactivate} disabled={saving || !deactivateReason.trim()}>
+              <button
+                type="button"
+                className="btn btn-danger-solid"
+                onClick={handleDeactivate}
+                disabled={saving || !deactivateReason.trim()}
+              >
                 Confirm deactivate
               </button>
             </div>

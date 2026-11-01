@@ -27,20 +27,33 @@ export function LoginPage() {
   }
 
   return (
-    <div className="login-page">
-      <h1>Admin login</h1>
-      {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+    <div className="centered-page">
+      <div className="brand">
+        <h1>Youth Awards</h1>
+        <p>Admin dashboard</p>
+      </div>
 
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+      <div className="card">
+        <h1>Log in</h1>
+        <p>Sign in to review nominations and manage nominees.</p>
 
-        <button type="submit" disabled={submitting}>
-          {submitting ? 'Logging in…' : 'Log in'}
-        </button>
-      </form>
+        {error && <p className="error-message">{error}</p>}
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+
+          <button type="submit" className="btn btn-primary btn-block" disabled={submitting}>
+            {submitting ? 'Logging in…' : 'Log in'}
+          </button>
+        </form>
+      </div>
     </div>
   )
 }
