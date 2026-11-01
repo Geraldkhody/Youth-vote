@@ -1,0 +1,284 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+a {
+  color: #2d5ea8;
+}
+
+.page-message,
+.page-note {
+  padding: 1rem;
+  color: #555;
+}
+
+.error-message {
+  color: #b00020;
+  background: #fde8e8;
+  border: 1px solid #f3b4b4;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.success-message {
+  color: #1a5c1a;
+  background: #e6f4e6;
+  border: 1px solid #b4e0b4;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+}
+
+.field-error {
+  color: #b00020;
+  font-size: 0.85rem;
+  margin: 0.15rem 0 0.5rem;
+}
+
+/* --- Public nomination form --- */
+
+.nominate-page,
+.login-page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.nominate-page form,
+.login-page form {
+  display: flex;
+  flex-direction: column;
+}
+
+.nominate-page label,
+.login-page label {
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.nominate-page input,
+.nominate-page select,
+.login-page input {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.nominate-page button,
+.login-page button {
+  min-height: 44px;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  background: #2d5ea8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nominate-page button:disabled,
+.login-page button:disabled {
+  background: #9ab3d6;
+  cursor: not-allowed;
+}
+
+/* --- Status badges --- */
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-badge--pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-badge--approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge--rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* --- Admin layout --- */
+
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: #1a1a2e;
+}
+
+.admin-sidebar a {
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+.admin-sidebar a.active {
+  font-weight: 700;
+  color: white;
+}
+
+.admin-sidebar__admin {
+  color: #aaa;
+  margin: 0;
+  flex-basis: 100%;
+}
+
+.admin-sidebar__logout {
+  margin-left: auto;
+  min-height: 44px;
+  padding: 0 1rem;
+  background: #b00020;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+@media (min-width: 600px) {
+  .admin-sidebar {
+    flex-direction: row;
+  }
+  .admin-sidebar__admin {
+    flex-basis: auto;
+  }
+}
+
+/* --- Admin tables --- */
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.filters select,
+.filters input {
+  min-height: 44px;
+  padding: 0.3rem 0.5rem;
+}
+
+.row-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.row-actions button {
+  min-height: 36px;
+}
+
+.reject-form,
+.merge-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* --- Nominees page --- */
+
+.nominee-list {
+  list-style: none;
+  padding: 0;
+}
+
+.nominee-list button {
+  width: 100%;
+  text-align: left;
+  min-height: 44px;
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+}
+
+.nominee-detail {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+}
+
+.nominee-detail label {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.nominee-detail input {
+  min-height: 44px;
+  padding: 0.5rem;
+}
+
+.nominee-detail button {
+  min-height: 44px;
+  margin-top: 0.75rem;
+}
+
+.deactivate-section {
+  margin-top: 1rem;
+}
